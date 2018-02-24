@@ -1,0 +1,42 @@
+<!-- Use this file to deploy some handlers/chains and services      -->
+<!-- Two ways to do this:                                           -->
+<!--   java org.apache.axis.client.AdminClient deploy.wsdd          -->
+<!--      after the axis server is running                          -->
+<!-- or                                                             -->
+<!--   java org.apache.axis.utils.Admin client|server deploy.wsdd   -->
+<!--      from the same directory that the Axis engine runs         -->
+
+<deployment
+    xmlns="http://xml.apache.org/axis/wsdd/"
+    xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
+
+  <!-- Services from CalculadoraService WSDL service -->
+
+  <service name="Calculadora" provider="java:RPC" style="wrapped" use="literal">
+      <parameter name="wsdlTargetNamespace" value="http://soapUI.com.br"/>
+      <parameter name="wsdlServiceElement" value="CalculadoraService"/>
+      <parameter name="schemaQualified" value="http://soapUI.com.br"/>
+      <parameter name="wsdlServicePort" value="Calculadora"/>
+      <parameter name="className" value="br.com.soapUI.CalculadoraSoapBindingImpl"/>
+      <parameter name="wsdlPortType" value="Calculadora"/>
+      <parameter name="typeMappingVersion" value="1.2"/>
+      <operation name="somar" qname="operNS:somar" xmlns:operNS="http://soapUI.com.br" returnQName="retNS:somarReturn" xmlns:retNS="http://soapUI.com.br" returnType="rtns:string" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="pns:numero1" xmlns:pns="http://soapUI.com.br" type="tns:int" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:numero2" xmlns:pns="http://soapUI.com.br" type="tns:int" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <operation name="subtrair" qname="operNS:subtrair" xmlns:operNS="http://soapUI.com.br" returnQName="retNS:subtrairReturn" xmlns:retNS="http://soapUI.com.br" returnType="rtns:string" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="pns:numero1" xmlns:pns="http://soapUI.com.br" type="tns:int" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:numero2" xmlns:pns="http://soapUI.com.br" type="tns:int" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <operation name="multiplicar" qname="operNS:multiplicar" xmlns:operNS="http://soapUI.com.br" returnQName="retNS:multiplicarReturn" xmlns:retNS="http://soapUI.com.br" returnType="rtns:string" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="pns:numero1" xmlns:pns="http://soapUI.com.br" type="tns:int" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:numero2" xmlns:pns="http://soapUI.com.br" type="tns:int" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <operation name="dividir" qname="operNS:dividir" xmlns:operNS="http://soapUI.com.br" returnQName="retNS:dividirReturn" xmlns:retNS="http://soapUI.com.br" returnType="rtns:string" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="pns:numero1" xmlns:pns="http://soapUI.com.br" type="tns:int" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:numero2" xmlns:pns="http://soapUI.com.br" type="tns:int" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <parameter name="allowedMethods" value="multiplicar dividir somar subtrair"/>
+
+  </service>
+</deployment>
